@@ -1,0 +1,34 @@
+.admin-main {
+    display: flex;
+    gap: 10px;
+}
+.admin-header {
+    background: #b2b2b2;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+.admin-menu ul li {
+    background: #c6c6c6;
+}
+.admin-table {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+.admin-table tr td {
+    border : 1px solid #d1d1d1;
+    padding: 5px;
+    text-align: center;
+}
+.admin-statusUser {
+    margin-bottom: 0!important;
+}
+.blog-main {
+    width: 100%;
+    display: flex;
+}
+.form-box {
+    margin: 0 auto;
+    width: 80%;
+    border: 2px solid grey;
+    border-radius: 8px;
+}

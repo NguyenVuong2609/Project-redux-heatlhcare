@@ -1,0 +1,56 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "status": true,
+      "rank": true,
+      "name": "Truong Minh Thu",
+      "age": 20,
+      "address": "Yen Bai",
+      "gender": "female",
+      "key": 1
+    },
+    {
+      "id": 2,
+      "status": false,
+      "rank": "false",
+      "name": "Truong Minh Thu",
+      "age": 20,
+      "address": "Yen Bai",
+      "gender": "female",
+      "key": 2
+    }
+  ],
+  "posts": [
+    {
+      "title": "Viêm phế quản",
+      "body": "Nguyên nhân chính gây nên bệnh viêm phế quản cấp tính thường là do vi- rút, bệnh còn có thể xảy ra do nhiễm trùng vi khuẩn hoặc tiếp xúc nhiều với các chất gây kích thích phổi, ví dụ như khói thuốc, bụi, ô nhiễm không khí. Viêm phế quản mãn tính thường do sự lặp lại của viêm niêm mạc phế quản trong thời gian dài. Những đối tượng có nguy cơ cao mắc phải viêm phế quản mãn tính là những người thường xuyên phải tiếp xúc với các chất kích thích phổi do nghề nghiệp (như công nhân xây dựng, thợ mỏ than, công nhân kim loại,..), và những người nghiện hút thuốc lá. Mức độ ô nhiễm không khí cũng là một trong những yếu tố góp phần phát triển bệnh.",
+      "id": 1,
+      "sub-title": "Viêm phế quản là tình trạng viêm niêm mạc ống phế quản, Khi bị mắc viêm phế quản, người bệnh thường ho , khạc đờm.",
+      "comment": [],
+      "image": "ho",
+      "status": true,
+      "key": 1
+    },
+    {
+      "title": "Đau dạ dày",
+      "body": "Nguyên nhân chính gây nên bệnh viêm phế quản cấp tính thường là do vi- rút, bệnh còn có thể xảy ra do nhiễm trùng vi khuẩn hoặc tiếp xúc nhiều với các chất gây kích thích phổi, ví dụ như khói thuốc, bụi, ô nhiễm không khí. Viêm phế quản mãn tính thường do sự lặp lại của viêm niêm mạc phế quản trong thời gian dài. Những đối tượng có nguy cơ cao mắc phải viêm phế quản mãn tính là những người thường xuyên phải tiếp xúc với các chất kích thích phổi do nghề nghiệp (như công nhân xây dựng, thợ mỏ than, công nhân kim loại,..), và những người nghiện hút thuốc lá. Mức độ ô nhiễm không khí cũng là một trong những yếu tố góp phần phát triển bệnh.",
+      "id": 2,
+      "sub-title": "Viêm phế quản là tình trạng viêm niêm mạc ống phế quản, Khi bị mắc viêm phế quản, người bệnh thường ho , khạc đờm.",
+      "comment": [],
+      "image": "daday",
+      "status": true,
+      "key": 2
+    },
+    {
+      "title": "Cảm cúm",
+      "body": "Nguyên nhân chính gây nên bệnh viêm phế quản cấp tính thường là do vi- rút, bệnh còn có thể xảy ra do nhiễm trùng vi khuẩn hoặc tiếp xúc nhiều với các chất gây kích thích phổi, ví dụ như khói thuốc, bụi, ô nhiễm không khí. Viêm phế quản mãn tính thường do sự lặp lại của viêm niêm mạc phế quản trong thời gian dài. Những đối tượng có nguy cơ cao mắc phải viêm phế quản mãn tính là những người thường xuyên phải tiếp xúc với các chất kích thích phổi do nghề nghiệp (như công nhân xây dựng, thợ mỏ than, công nhân kim loại,..), và những người nghiện hút thuốc lá. Mức độ ô nhiễm không khí cũng là một trong những yếu tố góp phần phát triển bệnh.",
+      "id": 1,
+      "sub-title": "Viêm phế quản là tình trạng viêm niêm mạc ống phế quản, Khi bị mắc viêm phế quản, người bệnh thường ho , khạc đờm.",
+      "comment": [],
+      "image": "camcum",
+      "status": true,
+      "key": 3
+    }
+  ]
+}
