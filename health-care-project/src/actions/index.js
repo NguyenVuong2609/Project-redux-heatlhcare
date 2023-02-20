@@ -5,6 +5,7 @@ import {
   GET_DATA,
   GET_DATA_BANNED,
   GET_POST_DATA,
+  POST_NEW_POST,
 } from "../constants/userActions";
 
 export const act_view_user = (data, status) => {
@@ -43,3 +44,9 @@ export const act_get_post_data = (data) => {
     payload: data
   }
 };
+export const act_add_new_post = (data) => {
+  return {
+    type: POST_NEW_POST,
+    payload: data
+  }
+}

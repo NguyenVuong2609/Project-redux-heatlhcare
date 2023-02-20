@@ -130,7 +130,6 @@ export default function TableBlog(props) {
       key: "sub-title",
       width: "20%",
       ...getColumnSearchProps("sub-title"),
-      sorter: (a, b) => a.age - b.age,
     },
     {
       title: "Body",
@@ -138,8 +137,6 @@ export default function TableBlog(props) {
       key: "body",
       width: "50%",
       ...getColumnSearchProps("body"),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ["descend", "ascend"],
     },
     {
       title: "Status",
