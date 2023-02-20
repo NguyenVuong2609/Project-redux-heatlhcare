@@ -7,3 +7,4 @@ export const GET_POST_DATA = "GET_POST_DATA";
 export const POST_NEW_POST = "POST_NEW_POST";
 export const DELETE_POST = "DELETE_POST";
 export const EDIT_POST = "EDIT_POST";
+export const VIEW_POST = "VIEW_POST";

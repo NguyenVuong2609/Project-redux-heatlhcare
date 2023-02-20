@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Typography } from "antd";
-import { Button, Form, Input, Select, Switch } from "antd";
+import { Button, Form, Input, Select, Switch, message } from "antd";
 import UploadPicture from "./UploadPicture";
 import { useDispatch } from "react-redux";
 import * as types from "../../actions/index";
@@ -9,7 +9,8 @@ const { TextArea } = Input;
 
 export default function FormCreatePost() {
   const [lock, setLock] = useState(false);
-  const [newPost, setNewPost] = useState({});
+  const [newPost, setNewPost] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
 
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -22,13 +23,29 @@ export default function FormCreatePost() {
     setNewPost({ ...newPost, image: filePath[0] });
   };
   const handleCreate = () => {
-    dispatch(types.act_add_new_post({ ...newPost, status: lock }));
+    if (newPost != "") {
+      delete newPost[""];
+      dispatch(types.act_add_new_post({ ...newPost, status: lock }));
+      messageApi.open({
+        type: 'success',
+        content: 'Successfully created!',
+        duration: 4
+      });
+    } else {
+      messageApi.open({
+        type: 'error',
+        content: 'Please fill all fields!',
+        duration: 4,
+      });
+    }
     document.getElementById("inputTitle").value = "";
     document.getElementById("inputSubtitle").value = "";
     document.getElementById("inputBody").value = "";
+    setNewPost("");
   };
   return (
     <div className="blog-main">
+      {contextHolder}
       <div className="form-box">
         <Title level={2} italic>
           Create a new Post

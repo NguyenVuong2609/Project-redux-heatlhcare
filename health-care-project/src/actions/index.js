@@ -6,6 +6,8 @@ import {
   GET_DATA_BANNED,
   GET_POST_DATA,
   POST_NEW_POST,
+  DELETE_POST,
+  VIEW_POST,
 } from "../constants/userActions";
 
 export const act_view_user = (data, status) => {
@@ -48,5 +50,17 @@ export const act_add_new_post = (data) => {
   return {
     type: POST_NEW_POST,
     payload: data
+  }
+}
+export const act_delete_post = (id) => {
+  return {
+    type: DELETE_POST,
+    payload: id
+  }
+};
+export const act_view_post = (data,status) => {
+  return {
+    type: VIEW_POST,
+    payload: {data, status}
   }
 }

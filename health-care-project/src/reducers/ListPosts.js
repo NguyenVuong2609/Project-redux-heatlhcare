@@ -16,6 +16,12 @@ const listPosts = (state = initialState, action) => {
       db.postNewPost({ ...action.payload, id: id, key: id });
       state.push({ ...action.payload, id: id , key: id });
       return state;
+      case DELETE_POST:
+        db.deletePost(action.payload);
+        state = state.filter(post => {
+          return post.id != action.payload
+        })
+        return state;
     default:
       return state;
   }

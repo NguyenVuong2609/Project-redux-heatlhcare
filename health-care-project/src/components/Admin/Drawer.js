@@ -6,7 +6,7 @@ import * as types from "../../actions";
 import { userContext } from "./UserAdmin";
 const { Option } = Select;
 
-export default function DrawerForm(props) {
+export default function DrawerForm() {
   const contextList = useContext(userContext);
   const dataView = useSelector((state) => state.userViewData);
   const dispatch = useDispatch();

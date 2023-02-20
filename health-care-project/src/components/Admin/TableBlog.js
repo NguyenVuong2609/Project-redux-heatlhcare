@@ -3,7 +3,11 @@ import { Button, Input, Space, Table, Typography } from "antd";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as types from "../../actions";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import DrawerBlogForm from "./DrawerBlog";
+
+
 
 export default function TableBlog(props) {
   const { list } = props;
@@ -12,10 +16,20 @@ export default function TableBlog(props) {
   const [searchedColumn, setSearchedColumn] = useState("");
   const dispatch = useDispatch();
   const searchInput = useRef(null);
-  const params = useParams();
+  const [show, setShow] = useState(false);
+  const [idDelete, setIdDelete] = useState("");
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+  };
+  const handleConfirm = ()=> {
+    dispatch(types.act_delete_post(idDelete));
+    setIdDelete("");
+    setShow(false);
+  };
 
   
-
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -154,14 +168,19 @@ export default function TableBlog(props) {
     {
       title: "Actions",
       key: "actions",
-      render: (user) => {
+      render: (post) => {
         return (
           <Space>
-            <Button 
+            <Button onClick={()=> {
+              dispatch(types.act_view_post(post, true));
+            }}
             >
               Edit
             </Button>
-            <Button
+            <Button onClick={()=>{
+              handleShow();
+              setIdDelete(post.id)
+            }}
             >
               Delete
             </Button>
@@ -170,5 +189,28 @@ export default function TableBlog(props) {
       },
     },
   ];
-  return <Table columns={columns} dataSource={list} />;
+ 
+  return <>
+  <Table columns={columns} dataSource={list} />;
+  <DrawerBlogForm/>
+  <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Warning</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure to delete this item?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleConfirm}>Yes</Button>
+        </Modal.Footer>
+      </Modal>
+  </>
 }
