@@ -67,7 +67,7 @@ export default function FormCreatePost() {
             <Input name="title" id="inputTitle" />
           </Form.Item>
           <Form.Item label="Sub-title">
-            <Input name="sub-title" id="inputSubtitle" />
+            <Input name="subTitle" id="inputSubtitle" />
           </Form.Item>
           <Form.Item label="Select color cover">
             <Select

@@ -142,7 +142,7 @@ export default function DrawerBlogForm() {
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item
-              name="sub-title"
+              name="subTitle"
               label="Sub-title"
               rules={[
                 {

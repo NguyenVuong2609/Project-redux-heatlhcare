@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Outlet, useParams } from "react-router-dom";
 import { Col, Row } from "antd";
 import CardItem from "../components/Solutions/CardItem";
 
 export default function Solutions() {
   const listItem = useSelector((state) => state.listPosts);
-  console.log(listItem);
+  const [listPosts, setListPosts] = useState();
+  useEffect(() => {
+    setListPosts(listItem);
+  }, [listItem]);
+  const params = useParams();
+
+  let element;
+  if (params.id === undefined){
+    if (listPosts != null) {
+      element = listPosts.map((item) => {
+        return (
+          <Col span={8} key={item.id} style={{ marginTop: "12px" }}>
+            <CardItem info={item} />
+          </Col>
+        );
+      });
+    }
+  } else {
+    element = <Outlet/>
+  }
   return (
     <div className="protect">
       <div className="container">
@@ -18,19 +38,10 @@ export default function Solutions() {
           </div>
         </div>
         <div className="solutions">
-          <Row gutter={16}>
-            <Col span={8}>
-              <CardItem />
-            </Col>
-            <Col span={8}>
-              <CardItem />
-            </Col>
-            <Col span={8}>
-              <CardItem />
-            </Col>
-          </Row>
+          <Row gutter={16}>{element}</Row>
         </div>
       </div>
+      {/* <Outlet /> */}
     </div>
   );
 }

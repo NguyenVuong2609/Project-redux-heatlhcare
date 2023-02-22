@@ -17,6 +17,7 @@ import { getUser } from "./services/createUserService";
 import { getPost } from "./services/postService";
 import { useEffect } from "react";
 import * as types from "./actions/index";
+import DetailBlog from "./components/Solutions/DetailBlog";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,9 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="news" element={<News />} />
-            <Route path="solutions" element={<Solutions />} />
+            <Route path="solutions" element={<Solutions />} >
+              <Route path="/solutions/:id" element={<DetailBlog/>}/>
+            </Route>
             <Route path="doctor" element={<Doctor />} />
             <Route path="contact" element={<Contact />} />
             <Route path="register" element={<Register />} />
