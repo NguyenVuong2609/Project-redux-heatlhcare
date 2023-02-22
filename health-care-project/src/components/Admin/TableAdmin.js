@@ -156,24 +156,31 @@ export default function TableAdmin(props) {
       title: "Actions",
       key: "actions",
       render: (user) => {
-        return params.id == 1 ? (
-          <Space>
-            <Button
-              onClick={() => {
-                dispatch(types.act_view_user(user, true));
-              }}
-            >
-              Edit
-            </Button>
-            <Button
-              onClick={() => {
-                dispatch(types.act_delete_user(user.id));
-              }}
-            >
-              Delete
-            </Button>
-          </Space>
-        ) : (params.id == 2) ? (
+        return params.id == 1 ? user.id == 1 ?
+        <Space>
+        <Button
+          onClick={() => {
+            dispatch(types.act_view_user(user, true));
+          }}
+        >
+          View
+        </Button>
+      </Space> : <Space>
+        <Button
+          onClick={() => {
+            dispatch(types.act_view_user(user, true));
+          }}
+        >
+          Edit
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch(types.act_delete_user(user.id));
+          }}
+        >
+          Delete
+        </Button>
+      </Space>  : (params.id == 2) ? (
           <Space>
             <Button>Unban</Button>
           </Space>

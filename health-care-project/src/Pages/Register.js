@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/LoginRegister.css";
 import {
   AutoComplete,
@@ -8,25 +9,27 @@ import {
   Form,
   Input,
   Select,
+  message,
 } from "antd";
+import { act_create_user } from "../actions";
 
 const { Option } = Select;
 const residences = [
   {
     value: "vietnam",
-    label: "Vietnam",
+    label: "Việt Nam",
     children: [
       {
         value: "hanoi",
-        label: "Hanoi",
+        label: "Hà Nội",
       },
       {
         value: "hcmcity",
-        label: "Ho Chi Minh City",
+        label: "TP. Hồ Chí Minh",
       },
       {
         value: "danang",
-        label: "Danang",
+        label: "Đà Nẵng",
       },
     ],
   },
@@ -62,7 +65,21 @@ const tailFormItemLayout = {
   },
 };
 export default function Register() {
+  const [newUser, setNewUser] = useState({
+    status: true,
+    rank: false,
+    email: "",
+    password: "",
+    name: "",
+    age: "",
+    address: "",
+    gender: "",
+    phone: "",
+  });
+  const listUsers = useSelector(state=> state.listUser);
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
@@ -77,22 +94,77 @@ export default function Register() {
       </Select>
     </Form.Item>
   );
-  
+  const handleChange = (e) => {
+    let name = e.target.id;
+    let value = e.target.value;
+    setNewUser({ ...newUser, [name]: value });
+  };
+  const handleCascader = (e) => {
+    setNewUser({
+      ...newUser,
+      address:
+        e[1] === "hanoi"
+          ? "Hà Nội"
+          : e[1] === "hcmcity"
+          ? "TP Hồ Chí Minh"
+          : "Đà Nẵng",
+    });
+  };
+  const handleGender = (e) => {
+    setNewUser({ ...newUser, gender: e });
+  };
+  const handleCreate = () => {
+    if (
+      newUser.email == "" ||
+      newUser.name == "" ||
+      newUser.password == "" ||
+      newUser.address == "" ||
+      newUser.age == "" ||
+      newUser.phone == "" ||
+      newUser.gender == ""
+    ) {
+      messageApi.open({
+        type: "warning",
+        content: "Vui lòng điền đầy đủ thông tin!",
+      });
+    } else {
+      let checkSameEmail = listUsers.filter(user=> {
+        if (user.email == newUser.email){
+          return user;
+        }
+      })
+      if (checkSameEmail.length > 0){
+        messageApi.open({
+          type: "error",
+          content: "Email này đã được sử dụng! Vui lòng điền email khác!",
+        });
+      } else {
+        delete newUser.confirm
+        delete newUser.agreement
+        dispatch(act_create_user(newUser));
+        messageApi.open({
+          type: "success",
+          content: "Tạo tài khoản thành công!",
+        });
+      }
+    }
+  };
   return (
     <div className="register-container">
+      {contextHolder}
       <div className="col-7 register-img"></div>
       <div className="register-form col-5">
         <Form
           {...formItemLayout}
           form={form}
-          name="register"
           onFinish={onFinish}
+          onChange={handleChange}
           initialValues={{
             residence: ["vietnam", "hanoi"],
             prefix: "84",
           }}
           style={{
-            width: "100%"
+            width: "100%",
           }}
           scrollToFirstError
         >
@@ -106,7 +178,7 @@ export default function Register() {
               },
               {
                 required: true,
-                message: "Please input your E-mail!",
+                message: "Vui lòng nhập email",
               },
             ]}
           >
@@ -115,11 +187,11 @@ export default function Register() {
 
           <Form.Item
             name="password"
-            label="Password"
+            label="Mật khẩu"
             rules={[
               {
                 required: true,
-                message: "Please input your password!",
+                message: "Vui lòng nhập mật khẩu",
               },
             ]}
             hasFeedback
@@ -129,13 +201,13 @@ export default function Register() {
 
           <Form.Item
             name="confirm"
-            label="Confirm Password"
+            label="Xác nhận mật khẩu"
             dependencies={["password"]}
             hasFeedback
             rules={[
               {
                 required: true,
-                message: "Please confirm your password!",
+                message: "Vui lòng xác nhận lại mật khẩu",
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
@@ -143,9 +215,7 @@ export default function Register() {
                     return Promise.resolve();
                   }
                   return Promise.reject(
-                    new Error(
-                      "The two passwords that you entered do not match!"
-                    )
+                    new Error("Hai mật khẩu chưa giống nhau")
                   );
                 },
               }),
@@ -156,25 +226,51 @@ export default function Register() {
 
           <Form.Item
             name="residence"
-            label="Habitual Residence"
+            label="Địa chỉ"
             rules={[
               {
                 type: "array",
                 required: true,
-                message: "Please select your habitual residence!",
+                message: "Vui lòng chọn địa chỉ",
               },
             ]}
           >
-            <Cascader options={residences} />
+            <Cascader onChange={handleCascader} options={residences} />
+          </Form.Item>
+
+          <Form.Item
+            name="name"
+            label="Họ và tên"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập họ và tên",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="age"
+            label="Tuổi"
+            rules={[
+              {
+                required: true,
+                message: "Vui lòng nhập tuổi",
+              },
+            ]}
+          >
+            <Input type="number"/>
           </Form.Item>
 
           <Form.Item
             name="phone"
-            label="Phone Number"
+            label="Số điện thoại"
             rules={[
               {
                 required: true,
-                message: "Please input your phone number!",
+                message: "Vui lòng điền số điện thoại của bạn",
               },
             ]}
           >
@@ -188,18 +284,21 @@ export default function Register() {
 
           <Form.Item
             name="gender"
-            label="Gender"
+            label="Giới tính"
             rules={[
               {
                 required: true,
-                message: "Please select gender!",
+                message: "Vui lòng chọn giới tính",
               },
             ]}
           >
-            <Select placeholder="select your gender">
-              <Option value="male">Male</Option>
-              <Option value="female">Female</Option>
-              <Option value="other">Other</Option>
+            <Select
+              placeholder="Chọn giới tính của bạn"
+              onChange={handleGender}
+            >
+              <Option value="male">Nam</Option>
+              <Option value="female">Nữ</Option>
+              <Option value="other">Khác</Option>
             </Select>
           </Form.Item>
 
@@ -211,18 +310,20 @@ export default function Register() {
                 validator: (_, value) =>
                   value
                     ? Promise.resolve()
-                    : Promise.reject(new Error("Should accept agreement")),
+                    : Promise.reject(
+                        new Error("Vui lòng xác nhận quy định của chúng tôi")
+                      ),
               },
             ]}
             {...tailFormItemLayout}
           >
             <Checkbox>
-              I have read the <a href="">agreement</a>
+              Tôi đã đọc đầy đủ <a href="">quy định</a>
             </Checkbox>
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              Register
+            <Button type="primary" htmlType="submit" onClick={handleCreate}>
+              Đăng ký
             </Button>
           </Form.Item>
         </Form>

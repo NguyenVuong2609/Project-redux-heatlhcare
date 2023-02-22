@@ -2,7 +2,6 @@ import { Avatar } from 'antd';
 import * as picture from '../assets/Img/index';
 
 export default function AvatarUser() {
-
   return (
     <Avatar
     size={{

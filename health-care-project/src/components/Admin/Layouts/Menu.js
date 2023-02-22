@@ -28,7 +28,7 @@ export default function MenuAdmin() {
       getItem("About", "6"),
       getItem("News", "7"),
     ]),
-    getItem("Setting", "sub4", <SettingOutlined />, [
+    getItem("Setting", "setting", <SettingOutlined />, [
       getItem("Log out", "8"),
     ]),
   ];

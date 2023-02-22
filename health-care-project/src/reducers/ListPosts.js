@@ -16,6 +16,16 @@ const listPosts = (state = initialState, action) => {
       db.postNewPost({ ...action.payload, id: id, key: id });
       state.push({ ...action.payload, id: id , key: id });
       return state;
+      case EDIT_POST:
+        db.updatePost(action.payload.id, action.payload.info);
+        state = state.map(post => {
+          if (post.id === action.payload.id) {
+            return action.payload.info;
+          } else {
+            return post;
+          }
+        })
+        return state;
       case DELETE_POST:
         db.deletePost(action.payload);
         state = state.filter(post => {

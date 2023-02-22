@@ -1,6 +1,5 @@
-import { EDIT_USER, DELETE_USER, GET_DATA } from "../constants/userActions";
+import { EDIT_USER, DELETE_USER, GET_DATA, CREATE_USER } from "../constants/userActions";
 import * as db from "../services/createUserService";
-import { deleteUser } from "../services/bannedService";
 
 let initialState = [];
 
@@ -18,6 +17,9 @@ const listUser = (state = initialState, action) => {
             return user;
           }
         })
+      return state;
+    case CREATE_USER:
+      db.postUser(action.payload);
       return state;
     case DELETE_USER:
       db.deleteUser(action.payload);

@@ -29,7 +29,7 @@ export default function DrawerForm() {
     dispatch(types.act_view_user("", false));
   };
   const saveNewData = () => {
-    dispatch(types.act_edit_user(newData.id, newData ));
+    dispatch(types.act_edit_user(newData.id, newData));
     onClose();
   };
   const handleChange = (e) => {
@@ -38,10 +38,103 @@ export default function DrawerForm() {
   const checkInfo = (e) => {
     let name = e.title;
     let value = e.value;
-    setNewData({...userData, [name]: value = (value == "true" ? true : false)});
+    setNewData({
+      ...userData,
+      [name]: (value = value == "true" ? true : false),
+    });
   };
   return !open ? (
     <></>
+  ) : userData.id == 1 ? (
+    <Drawer
+      title="View administration"
+      width={720}
+      onClose={onClose}
+      open={open}
+      bodyStyle={{
+        paddingBottom: 80,
+      }}
+    >
+      <Form
+        layout="vertical"
+        hideRequiredMark
+        initialValues={userData}
+        onChange={handleChange}
+      >
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              name="name"
+              label="Name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter user name",
+                },
+              ]}
+            >
+              <Input placeholder="Please enter user name" disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              name="age"
+              label="Age"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter age",
+                },
+              ]}
+            >
+              <Input
+                style={{
+                  width: "100%",
+                }}
+                placeholder="Please enter url"
+                disabled
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              name="email"
+              label="Email"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter user email",
+                },
+              ]}
+            >
+              <Input placeholder="Please enter user email" disabled />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              name="address"
+              label="Address"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter address",
+                },
+              ]}
+            >
+              <Input
+                style={{
+                  width: "100%",
+                }}
+                placeholder="Please enter address"
+                disabled
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
+    </Drawer>
   ) : (
     <Drawer
       title="Edit account"
@@ -78,7 +171,7 @@ export default function DrawerForm() {
                 },
               ]}
             >
-              <Input placeholder="Please enter user name" disabled/>
+              <Input placeholder="Please enter user name" disabled />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -155,8 +248,12 @@ export default function DrawerForm() {
                 labelInValue
                 allowClear
               >
-                <Option title={"status"} value="true">Actived</Option>
-                <Option title={"status"} value="false">Banned</Option>
+                <Option title={"status"} value="true">
+                  Actived
+                </Option>
+                <Option title={"status"} value="false">
+                  Banned
+                </Option>
               </Select>
             </Form.Item>
           </Col>
@@ -176,8 +273,12 @@ export default function DrawerForm() {
                 labelInValue
                 allowClear
               >
-                <Option title={"rank"} value="true">VIP member</Option>
-                <Option title={"rank"} value="false">Normal</Option>
+                <Option title={"rank"} value="true">
+                  VIP member
+                </Option>
+                <Option title={"rank"} value="false">
+                  Normal
+                </Option>
               </Select>
             </Form.Item>
           </Col>
@@ -200,10 +301,36 @@ export default function DrawerForm() {
                 labelInValue
                 allowClear
               >
-                <Option title={"gender"} value="male">Male</Option>
-                <Option title={"gender"} value="female">Female</Option>
-                <Option title={"gender"} value="other">Other</Option>
+                <Option title={"gender"} value="male">
+                  Male
+                </Option>
+                <Option title={"gender"} value="female">
+                  Female
+                </Option>
+                <Option title={"gender"} value="other">
+                  Other
+                </Option>
               </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              name="phone"
+              label="Phone number"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter phone number",
+                },
+              ]}
+            >
+              <Input
+                style={{
+                  width: "100%",
+                }}
+                placeholder="Please enter phone number"
+                disabled
+              />
             </Form.Item>
           </Col>
         </Row>
