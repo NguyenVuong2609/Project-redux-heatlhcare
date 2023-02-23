@@ -16,6 +16,7 @@ import {
   IS_LOGOUT,
   USER_LOGIN,
   NEW_USER_LOGIN,
+  PATCH_POST,
 } from "../constants/userActions";
 
 export const act_view_user = (data, status) => {
@@ -116,5 +117,11 @@ export const act_edit_user_login = (user) => {
   return {
     type: NEW_USER_LOGIN,
     payload: user
+  }
+}
+export const act_patch_post = (id,info)=> {
+  return {
+    type: PATCH_POST,
+    payload: {id, info}
   }
 }

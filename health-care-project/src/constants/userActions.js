@@ -15,3 +15,4 @@ export const IS_LOGIN = "IS_LOGIN";
 export const IS_LOGOUT = "IS_LOGOUT";
 export const USER_LOGIN = "USER_LOGIN";
 export const NEW_USER_LOGIN = "NEW_USER_LOGIN";
+export const PATCH_POST = "PATCH_POST";

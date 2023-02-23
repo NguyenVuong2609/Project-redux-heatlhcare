@@ -57,7 +57,7 @@ export default function Contact() {
       <div className="col-md-6">
         <div className="map-responsive">
           <iframe
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
+            src="https://www.google.com/maps/d/embed?mid=1hSJI5w-gsG-RFj5jcwFJKP_7aEU&hl=vi&ehbc=2E312F"
             width={600}
             height={540}
             frameBorder={0}

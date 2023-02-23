@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../styles/LoginRegister.css";
 import {
   AutoComplete,
@@ -14,6 +15,7 @@ import {
 import { act_create_user } from "../actions";
 
 const { Option } = Select;
+
 const residences = [
   {
     value: "vietnam",
@@ -76,9 +78,10 @@ export default function Register() {
     gender: "",
     phone: "",
   });
-  const listUsers = useSelector(state=> state.listUser);
+  const listUsers = useSelector((state) => state.listUser);
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
@@ -128,24 +131,27 @@ export default function Register() {
         content: "Vui lòng điền đầy đủ thông tin!",
       });
     } else {
-      let checkSameEmail = listUsers.filter(user=> {
-        if (user.email == newUser.email){
+      let checkSameEmail = listUsers.filter((user) => {
+        if (user.email == newUser.email) {
           return user;
         }
-      })
-      if (checkSameEmail.length > 0){
+      });
+      if (checkSameEmail.length > 0) {
         messageApi.open({
           type: "error",
           content: "Email này đã được sử dụng! Vui lòng điền email khác!",
         });
       } else {
-        delete newUser.confirm
-        delete newUser.agreement
+        delete newUser.confirm;
+        delete newUser.agreement;
         dispatch(act_create_user(newUser));
         messageApi.open({
           type: "success",
           content: "Tạo tài khoản thành công!",
         });
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
       }
     }
   };
@@ -261,7 +267,7 @@ export default function Register() {
               },
             ]}
           >
-            <Input type="number"/>
+            <Input type="number" />
           </Form.Item>
 
           <Form.Item

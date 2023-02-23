@@ -32,7 +32,7 @@ export default function News() {
             </div>
           </div>
           <div className="row d_flex">
-            <div className="col-12">
+            <div className="col-12 text-justify">
               Đại dịch COVID-19 là một đại dịch bệnh truyền nhiễm với tác
               nhân là virus SARS-CoV-2 và các biến thể của nó đang diễn ra trên
               phạm vi toàn cầu. Khởi nguồn vào cuối tháng 12 năm 2019 với

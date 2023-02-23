@@ -11,20 +11,20 @@ export default function SolutionMain() {
     setListPosts(listItem);
   }, [listItem]);
 
-  let element="";
+  let element = "";
   if (listPosts != null && listPosts.length > 0) {
     element = (
-      <Row gutter={16}>
-        <Col span={8}>
-          <CardItem info={listPosts[0]}/>
-        </Col>
-        <Col span={8}>
-          <CardItem info={listPosts[1]}/>
-        </Col>
-        <Col span={8}>
-          <CardItem info={listPosts[2]}/>
-        </Col>
-      </Row>
+      <div className="solutions row d_flex">
+        <div className="col-md-4 col-sm-12">
+            <CardItem info={listPosts[0]} />
+        </div>
+        <div className="col-md-4 col-sm-12">
+          <CardItem info={listPosts[1]} />
+        </div>
+        <div className="col-md-4 col-sm-12">
+          <CardItem info={listPosts[2]} />
+        </div>
+      </div>
     );
   }
   return listPosts != null && listPosts.length > 0 ? (
@@ -38,10 +38,10 @@ export default function SolutionMain() {
             </div>
           </div>
         </div>
-        <div className="solutions">
-         {element}
-        </div>
+        {element}
       </div>
     </div>
-  ) : <></>
+  ) : (
+    <></>
+  );
 }

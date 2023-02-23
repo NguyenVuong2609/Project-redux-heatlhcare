@@ -12,4 +12,7 @@ const deletePost = async (id)=> {
 const updatePost = async (id,post)=> {
     return await axios.put(`${baseUrl}/${id}`, post);
 };
-export {getPost, postNewPost, deletePost, updatePost};
+const patchPost = async(id,info)=> {
+    return await axios.patch(`${baseUrl}/${id}`, info)
+};
+export {getPost, postNewPost, deletePost, updatePost, patchPost};

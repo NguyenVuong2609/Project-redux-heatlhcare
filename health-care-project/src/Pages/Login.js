@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,14 +12,19 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loginAcc, setLoginAcc] = useState({ email: "", password: "" });
+  const [fullList, setFullList] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
+  useEffect(()=>{
+    setFullList(listUser)
+  },[listUser])
+  console.log(fullList);
   const handleLogin = () => {
     let checkAcc;
     if (loginAcc.email != "" && loginAcc.password != "") {
-      checkAcc = listUser.filter((user) => {
+      checkAcc = fullList.filter((user) => {
         if (user.email == loginAcc.email && user.password == loginAcc.password) {
          return user;
         }

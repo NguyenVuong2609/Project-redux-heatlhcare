@@ -20,6 +20,7 @@ const listUser = (state = initialState, action) => {
       return state;
     case CREATE_USER:
       db.postUser(action.payload);
+      state.push(action.payload);
       return state;
     case DELETE_USER:
       db.deleteUser(action.payload);

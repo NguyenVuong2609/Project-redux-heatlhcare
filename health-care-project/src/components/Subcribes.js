@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Subcribes() {
+  const navigate = useNavigate();
   return (
     <div className="update">
       <div className="cevery_white">
@@ -8,7 +10,7 @@ export default function Subcribes() {
           <div className="row">
             <div className="col-md-12">
               <div className="titlepage">
-                <h2>Get Every Update.... </h2>
+                <h2>Cập nhật thường xuyên tin tức...</h2>
               </div>
             </div>
           </div>
@@ -18,15 +20,7 @@ export default function Subcribes() {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <form id="colof" className="form_subscri">
-                <input
-                  className="newsl"
-                  placeholder="Your Email"
-                  type="text"
-                  name="Email"
-                />
-                <button className="subsci_btn">Subscribe Now</button>
-              </form>
+                <button className="subsci_btn" onClick={()=>{navigate("/register")}}>Đăng ký ngay!</button>    
             </div>
           </div>
         </div>

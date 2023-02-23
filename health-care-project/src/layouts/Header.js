@@ -46,7 +46,6 @@ export default function Header() {
         <Dropdown.Item eventKey="1" onClick={handleShow}>
           Thông tin
         </Dropdown.Item>
-        <Dropdown.Item eventKey="2">Đổi mật khẩu</Dropdown.Item>
         <Dropdown.Item
           eventKey="3"
           onClick={() => {
