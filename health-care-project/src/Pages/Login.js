@@ -38,16 +38,23 @@ export default function Login() {
       if (checkAcc[0].id == 1){
         dispatch(act_open_admin());
       } else {
-        messageApi.open({
-          type: "success",
-          content: "Đăng nhập thành công!",
-        });
-        dispatch(act_login(true));
-        dispatch(act_user_login(checkAcc[0]));
-        localStorage.setItem("LOGIN_ACC",JSON.stringify([...checkAcc,true]));
-        setTimeout(()=>{
-          navigate("/");
-        },1000)
+        if (checkAcc[0].status == false) {
+          messageApi.open({
+            type: "warning",
+            content: "Tài khoản đã bị khóa!",
+          });
+        } else {
+          messageApi.open({
+            type: "success",
+            content: "Đăng nhập thành công!",
+          });
+          dispatch(act_login(true));
+          dispatch(act_user_login(checkAcc[0]));
+          localStorage.setItem("LOGIN_ACC",JSON.stringify([...checkAcc,true]));
+          setTimeout(()=>{
+            navigate("/");
+          },1000)
+        }
       }
     }
   };

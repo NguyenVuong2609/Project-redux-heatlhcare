@@ -95,7 +95,7 @@ export default function FormCreatePost() {
             <UploadPicture fileUrl={getImgUrl} />
           </Form.Item>
           <Form.Item label="Button">
-            <Button onClick={handleCreate}>Button</Button>
+            <Button onClick={handleCreate}>Create</Button>
           </Form.Item>
         </Form>
       </div>
