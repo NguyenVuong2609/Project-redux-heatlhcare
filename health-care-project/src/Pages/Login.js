@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/LoginRegister.css";
 import { EyeTwoTone, EyeInvisibleOutlined } from '@ant-design/icons';
-import { act_login, act_open_admin } from "../actions";
+import { act_login, act_open_admin, act_user_login } from "../actions";
 
 export default function Login() {
   const listUser = useSelector((state) => state.listUser);
@@ -20,7 +20,6 @@ export default function Login() {
   useEffect(()=>{
     setFullList(listUser)
   },[listUser])
-  console.log(fullList);
   const handleLogin = () => {
     let checkAcc;
     if (loginAcc.email != "" && loginAcc.password != "") {
@@ -44,6 +43,7 @@ export default function Login() {
           content: "Đăng nhập thành công!",
         });
         dispatch(act_login(true));
+        dispatch(act_user_login(checkAcc[0]));
         localStorage.setItem("LOGIN_ACC",JSON.stringify([...checkAcc,true]));
         setTimeout(()=>{
           navigate("/");
